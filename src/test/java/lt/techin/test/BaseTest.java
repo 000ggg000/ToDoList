@@ -20,7 +20,7 @@ public class BaseTest {
 
     @AfterEach
     void closeDown(){
-       driver.close();
+//    driver.quit();
     }
     public static void waiting(){
         try{
