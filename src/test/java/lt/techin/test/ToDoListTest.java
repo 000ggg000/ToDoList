@@ -12,7 +12,7 @@ import java.awt.*;
 public class ToDoListTest extends BaseTest {
 
     @Test
-    void addElement() {
+    void addTask() {
         ToDoList toDoList = new ToDoList(driver);
         toDoList.enterElement("what a wonderful day");
         Assertions.assertEquals("what a wonderful day", toDoList.insertedElement());
@@ -23,9 +23,30 @@ public class ToDoListTest extends BaseTest {
     void ifCompletedTask() {
         ToDoList toDoList = new ToDoList(driver);
         toDoList.enterElement("what a wonderful day");
+//        Assertions.assertEquals("what a wonderful day", toDoList.insertedElement());
+        toDoList.checkTheTaskDone();
+//        System.out.println(toDoList.insertedElement().contains());
+        System.out.println(toDoList.insertedElement());
+        System.out.println(toDoList.completedElement());
+        Assertions.assertEquals(toDoList.insertedElement(), toDoList.completedElement());
+
+
+        System.out.println("kiti irasai" + toDoList.notCompletedElements("what a wonderful day"));
+
+        Assertions.assertTrue(toDoList.notCompletedElements("what a wonderful day"));
+//        Assertions.assertEquals(toDoList.notCompletedElements("what a wonderful day"));
+
+    }
+
+    @Test
+    void deleteTask() {
+        ToDoList toDoList = new ToDoList(driver);
+        toDoList.enterElement("what a wonderful day");
         Assertions.assertEquals("what a wonderful day", toDoList.insertedElement());
         toDoList.checkTheTaskDone();
-//        Assertions.assertTrue("completed", );
+        toDoList.clicktrash();
+        waiting();
+        Assertions.assertNotEquals("what a wonderful day", toDoList.insertedElement());
 
     }
 }
